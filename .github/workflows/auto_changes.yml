@@ -1,0 +1,21 @@
+name: Auto Deploy Changes
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Installing Node
+      uses: actions/setup-node@v2-beta
+      with:
+          node-version: 20
+          
+  -name: Installing Surge
+      run: npm install --global surge
+    -name: Deploy using surge
+    run: surge ./ previous-statement.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+    
